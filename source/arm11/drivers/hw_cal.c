@@ -211,20 +211,17 @@ Result HWCAL_load(void)
 	// Load the whole file.
 	u32 bytesRead;
 	res = fRead(f, hwcal, sizeof(Hwcal), &bytesRead);
+	fClose(f);
 	if(res != RES_OK)
 	{
-		fClose(f);
 		free(hwcal);
 		return res;
 	}
 	if(bytesRead != sizeof(Hwcal))
 	{
-		fClose(f);
 		free(hwcal);
 		return RES_OUT_OF_RANGE;
 	}
-
-	fClose(f);
 
 	// Check HWCAL magic.
 	if(hwcal->magic != HWCAL_MAGIC)
