@@ -63,6 +63,11 @@ typedef enum
 	IPC_CMD9_FRENAME         = MAKE_CMD9(2, 0, 0),
 	IPC_CMD9_FUNLINK         = MAKE_CMD9(1, 0, 0),
 
+	// PRNG API.
+	IPC_CMD9_PRNG_GET_SEED   = MAKE_CMD9(0, 1, 0),
+	IPC_CMD9_PRNG_GET_RAND0  = MAKE_CMD9(0, 1, 0),
+	IPC_CMD9_PRNG_GET_RAND1  = MAKE_CMD9(0, 1, 0),
+
 	// open_agb_firm specific API.
 	IPC_CMD9_PREPARE_GBA     = MAKE_CMD9(1, 0, 2),
 	IPC_CMD9_SET_GBA_RTC     = MAKE_CMD9(0, 0, 2),
