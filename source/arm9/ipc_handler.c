@@ -20,6 +20,7 @@
 #include "ipc_handler.h"
 #include "drivers/cache.h"
 #include "fs.h"
+#include "drivers/prng.h"
 #include "drivers/lgy_common.h"
 #include "debug.h"
 
@@ -93,6 +94,17 @@ u32 IPC_handleCmd(u8 cmdId, u32 sendBufs, u32 recvBufs, const u32 *const buf)
 			break;
 		case IPC_CMD_ID_MASK(IPC_CMD9_FUNLINK):
 			result = fUnlink((const char *const)buf[0]);
+			break;
+
+		// PRNG API.
+		case IPC_CMD_ID_MASK(IPC_CMD9_PRNG_GET_SEED):
+			*(u32*)buf[0] = PRNG_GetSeed();
+			break;
+		case IPC_CMD_ID_MASK(IPC_CMD9_PRNG_GET_RAND0):
+			*(u32*)buf[0] = PRNG_GetRand0();
+			break;
+		case IPC_CMD_ID_MASK(IPC_CMD9_PRNG_GET_RAND1):
+			*(u32*)buf[0] = PRNG_GetRand1();
 			break;
 
 #ifdef LIBN3DS_LEGACY
