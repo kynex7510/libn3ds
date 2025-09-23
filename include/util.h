@@ -81,6 +81,8 @@ float str2float(const char *str);
 static inline u32 intLog2(u32 val)
 {
 	// The result is undefined if __builtin_clzl() is called with 0.
+	// TODO: Replace with the following when stdbit.h is available:
+	//       "#define LOG2I(x) ((unsigned)(sizeof(x) * CHAR_BIT - 1) - stdc_leading_zeros(x))"
 	return (val ? 31u - __builtin_clzl(val) : val);
 }
 
@@ -107,6 +109,7 @@ static inline u32 nextPow2(u32 val)
 
 	// Warning: Allowed range is 2 - 2147483648.
 	// Everything else is undefined behavior.
+	// TODO: Replace this with stdc_bit_ceil() from stdbit.h when this is available.
 	return BIT(32u - __builtin_clzl(val - 1));
 }
 
